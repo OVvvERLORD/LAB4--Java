@@ -4,7 +4,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.*;
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
 
 class user {
     int id;
@@ -49,7 +50,8 @@ public class hw4 {
                }
                norm_input = norm_input.replace('[', ' ').replace(']', ' ').replaceAll("id", "").replaceAll("name", "").replaceAll("company","").replaceAll("user", "").replaceAll("email", "").replaceAll("address", "").replaceAll("zip", "").replaceAll("state", "").replaceAll("country", "").replaceAll("phone", "").replaceAll("photo", "").replaceAll(" Attribute Error: person.astName is not supported","").replaceAll(": ",":").replaceAll("O&#x27;", "");
                int count = 0;
-               HashSet users_set = new HashSet();
+               LinkedHashSet users_set = new LinkedHashSet<user>();
+               
                char [] norm_input_ch = norm_input.toCharArray();
                for (int i = 0; i < norm_input_ch.length; i++) {
                    if (norm_input_ch[i] == '{') {
@@ -260,11 +262,13 @@ public class hw4 {
                     }
                     temp_string = new String(photo_str);
                     current.Photo = temp_string;
-
                     users_set.add(current);
                    }
                }
-               System.out.println(norm_input);
+               Iterator<user> it = users_set.iterator();
+               while (it.hasNext()) {
+                    System.out.println(it.next().id);
+               }
           } catch (IOException e) {
                System.err.println(e.getMessage());
           }
