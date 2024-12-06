@@ -33,7 +33,6 @@ class user {
     this.Photo = "";
     }
 }
-
 public class hw4 {
      public static void main(String[] args){
           try {
@@ -267,7 +266,9 @@ public class hw4 {
                }
                Iterator<user> it = users_set.iterator();
                while (it.hasNext()) {
-                    System.out.println(it.next().id);
+                    user curr = it.next();
+                    System.out.println(curr.id+" "+curr.name+" "+curr.company+" "+curr.username+" "+curr.email+" "+curr.address+" "+curr.zip+" "+curr.state+" "+curr.country+" "+curr.phone+" "+curr.Photo+" ");
+                    System.out.print("\n");
                }
           } catch (IOException e) {
                System.err.println(e.getMessage());
