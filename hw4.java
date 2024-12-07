@@ -3,7 +3,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.*;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 
@@ -33,8 +32,38 @@ class user {
     this.Photo = "";
     }
 }
-public class hw4 {
-     public static void main(String[] args){
+class union{
+     String str;
+     int i;
+}
+class parser {
+     public union pars(int i, char [] norm_input_ch) {
+          while (norm_input_ch[i] != ':') {
+                    i++;
+               }
+          i+=2;
+          int j = 0;
+          int char_cnt = 0;
+          char [] temp_str = new char [50]; 
+          while (norm_input_ch[i] != '"'){
+               temp_str[j] = norm_input_ch[i];
+               i++;
+               j++;
+               char_cnt+=1;
+          }
+          char [] add_str = new char [char_cnt+1];
+          for (int r = 0; r < char_cnt; r++) {
+               add_str[r] = temp_str[r];
+          }
+          String temp_string = new String(add_str);
+          union ret = new union();
+          ret.i = i;
+          ret.str = temp_string;
+          return ret;
+     }
+}
+class first_query{
+     public void first(){
           try {
                URL url = new URL("https://fake-json-api.mock.beeceptor.com/users".toString());
                URLConnection conn = url.openConnection();
@@ -58,221 +87,52 @@ public class hw4 {
                          i++;
                     }
                     i++;
-                    while (norm_input_ch[i] != ':') {
-                         i++;
-                    }
                     i+=2;
                     count++;
                     user current = new user();
                     current.id = count;
-                    int j = 0;
-                    char [] temp_str = new char [50]; 
-                    int char_cnt = 0;
-                    while (norm_input_ch[i] != '"'){
-                         temp_str[j] = norm_input_ch[i];
-                         i++;
-                         j++;
-                         char_cnt+=1;
-                    }
-                    temp_str[j] = 0;
-                    char [] name_str = new char [char_cnt+1];
-                    for (int r = 0; r < char_cnt; r++) {
-                        name_str[r] = temp_str[r];
-                    }
-                    String temp_string = new String(name_str);
-                    current.name = temp_string;
-
-                    while (norm_input_ch[i] != ':') {
-                         i++;
-                    }
-                    i+=2;
-                    j = 0;
-                    char_cnt = 0;
-                    Arrays.fill(temp_str, '\u0000');
-                    while (norm_input_ch[i] != '"'){
-                         temp_str[j] = norm_input_ch[i];
-                         i++;
-                         j++;
-                         char_cnt+=1;
-                    }
-                    char [] comp_str = new char [char_cnt+1];
-                    for (int r = 0; r < char_cnt; r++) {
-                        comp_str[r] = temp_str[r];
-                    }
-                    temp_string = new String(comp_str);
-                    current.company = temp_string;
-
-                    while (norm_input_ch[i] != ':') {
-                         i++;
-                    }
-                    i+=2;
-                    j = 0;
-                    char_cnt = 0;
-                    Arrays.fill(temp_str, '\u0000');
-                    while (norm_input_ch[i] != '"'){
-                         temp_str[j] = norm_input_ch[i];
-                         i++;
-                         j++;
-                         char_cnt+=1;
-                    }
-                    char [] usname_str = new char [char_cnt+1];
-                    for (int r = 0; r < char_cnt; r++) {
-                        usname_str[r] = temp_str[r];
-                    }
-                    temp_string = new String(usname_str);
-                    current.username = temp_string;
-
-                    while (norm_input_ch[i] != ':') {
-                         i++;
-                    }
-                    i+=2;
-                    j = 0;
-                    char_cnt = 0;
-                    Arrays.fill(temp_str, '\u0000');
-                    while (norm_input_ch[i] != '"'){
-                         temp_str[j] = norm_input_ch[i];
-                         i++;
-                         j++;
-                         char_cnt+=1;
-                    }
-                    char [] email_str = new char [char_cnt+1];
-                    for (int r = 0; r < char_cnt; r++) {
-                        email_str[r] = temp_str[r];
-                    }
-                    temp_string = new String(email_str);
-                    current.email = temp_string;
-
-                    while (norm_input_ch[i] != ':') {
-                         i++;
-                    }
-                    i+=2;
-                    j = 0;
-                    char_cnt = 0;
-                    Arrays.fill(temp_str, '\u0000');
-                    while (norm_input_ch[i] != '"'){
-                         temp_str[j] = norm_input_ch[i];
-                         i++;
-                         j++;
-                         char_cnt+=1;
-                    }
-                    char [] add_str = new char [char_cnt+1];
-                    for (int r = 0; r < char_cnt; r++) {
-                        add_str[r] = temp_str[r];
-                    }
-                    temp_string = new String(add_str);
-                    current.address= temp_string;
-
-                    while (norm_input_ch[i] != ':') {
-                         i++;
-                    }
-                    i+=2;
-                    j = 0;
-                    char_cnt = 0;
-                    Arrays.fill(temp_str, '\u0000');
-                    while (norm_input_ch[i] != '"'){
-                         temp_str[j] = norm_input_ch[i];
-                         i++;
-                         j++;
-                         char_cnt+=1;
-                    }
-                    char [] zip_str = new char [char_cnt+1];
-                    for (int r = 0; r < char_cnt; r++) {
-                        zip_str[r] = temp_str[r];
-                    }
-                    temp_string = new String(zip_str);
-                    current.zip = temp_string;
-
-                    while (norm_input_ch[i] != ':') {
-                         i++;
-                    }
-                    i+=2;
-                    j = 0;
-                    char_cnt = 0;
-                    Arrays.fill(temp_str, '\u0000');
-                    while (norm_input_ch[i] != '"'){
-                         temp_str[j] = norm_input_ch[i];
-                         i++;
-                         j++;
-                         char_cnt+=1;
-                    }
-                    char [] state_str = new char [char_cnt+1];
-                    for (int r = 0; r < char_cnt; r++) {
-                        state_str[r] = temp_str[r];
-                    }
-                    temp_string = new String(state_str);
-                    current.state = temp_string;
-
-                    while (norm_input_ch[i] != ':') {
-                         i++;
-                    }
-                    i+=2;
-                    j = 0;
-                    char_cnt = 0;
-                    Arrays.fill(temp_str, '\u0000');
-                    while (norm_input_ch[i] != '"'){
-                         temp_str[j] = norm_input_ch[i];
-                         i++;
-                         j++;
-                         char_cnt+=1;
-                    }
-                    char [] country_str = new char [char_cnt+1];
-                    for (int r = 0; r < char_cnt; r++) {
-                        country_str[r] = temp_str[r];
-                    }
-                    temp_string = new String(country_str);
-                    current.country = temp_string;
-
-                    while (norm_input_ch[i] != ':') {
-                         i++;
-                    }
-                    i+=2;
-                    j = 0;
-                    char_cnt = 0;
-                    Arrays.fill(temp_str, '\u0000');
-                    while (norm_input_ch[i] != '"'){
-                         temp_str[j] = norm_input_ch[i];
-                         i++;
-                         j++;
-                         char_cnt+=1;
-                    }
-                    char [] phone_str = new char [char_cnt+1];
-                    for (int r = 0; r < char_cnt; r++) {
-                        phone_str[r] = temp_str[r];
-                    }
-                    temp_string = new String(phone_str);
-                    current.phone = temp_string;
-
-                    while (norm_input_ch[i] != ':') {
-                         i++;
-                    }
-                    i+=2;
-                    j = 0;
-                    char_cnt = 0;
-                    Arrays.fill(temp_str, '\u0000');
-                    while (norm_input_ch[i] != '"'){
-                         temp_str[j] = norm_input_ch[i];
-                         i++;
-                         j++;
-                         char_cnt+=1;
-                    }
-                    char [] photo_str = new char [char_cnt+1];
-                    for (int r = 0; r < char_cnt; r++) {
-                        photo_str[r] = temp_str[r];
-                    }
-                    temp_string = new String(photo_str);
-                    current.Photo = temp_string;
+                    parser parser = new parser();
+                    current.name = parser.pars(i, norm_input_ch).str;
+                    i = parser.pars(i, norm_input_ch).i;
+                    current.company = parser.pars(i, norm_input_ch).str;
+                    i = parser.pars(i, norm_input_ch).i;
+                    current.username = parser.pars(i, norm_input_ch).str;
+                    i = parser.pars(i, norm_input_ch).i;
+                    current.email = parser.pars(i, norm_input_ch).str;
+                    i = parser.pars(i, norm_input_ch).i;
+                    current.address = parser.pars(i, norm_input_ch).str;
+                    i = parser.pars(i, norm_input_ch).i;
+                    current.zip = parser.pars(i, norm_input_ch).str;
+                    i = parser.pars(i, norm_input_ch).i;
+                    current.state = parser.pars(i, norm_input_ch).str;
+                    i = parser.pars(i, norm_input_ch).i;
+                    current.country = parser.pars(i, norm_input_ch).str;
+                    i = parser.pars(i, norm_input_ch).i;
+                    current.phone = parser.pars(i, norm_input_ch).str;
+                    i = parser.pars(i, norm_input_ch).i;
+                    current.Photo = parser.pars(i, norm_input_ch).str;
                     users_set.add(current);
                    }
                }
-               Iterator<user> it = users_set.iterator();
-               while (it.hasNext()) {
-                    user curr = it.next();
-                    System.out.println(curr.id+" "+curr.name+" "+curr.company+" "+curr.username+" "+curr.email+" "+curr.address+" "+curr.zip+" "+curr.state+" "+curr.country+" "+curr.phone+" "+curr.Photo+" ");
-                    System.out.print("\n");
+               try{
+                    Iterator<user> it = users_set.iterator();
+                    while (it.hasNext()) {
+                         user curr = it.next();
+                         System.out.println(curr.id+" "+curr.name+" "+curr.company+" "+curr.username+" "+curr.email+" "+curr.address+" "+curr.zip+" "+curr.state+" "+curr.country+" "+curr.phone+" "+curr.Photo+" ");
+                         System.out.print("\n");
+                    }
+               } catch (Exception e) {
+                    System.err.println(e.getMessage());
                }
           } catch (IOException e) {
                System.err.println(e.getMessage());
           }
+     }
+}
+public class hw4 {
+     public static void main(String[] args){
+          first_query part_1 = new first_query();
+          part_1.first();
      }
 }
 
